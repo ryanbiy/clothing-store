@@ -4,18 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | biy</title>
+    <title>Admin Dashboard | STRTWEAR</title>
     <meta name="description" content="Business dashboard">
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
         .admin-tabs {
             display: flex;
             gap: 8px;
             margin-bottom: 24px;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .admin-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .admin-tab {
+            flex: 0 0 auto;
             padding: 12px 20px;
             font-family: 'Press Start 2P', monospace;
             font-size: 0.55rem;
@@ -23,6 +34,7 @@
             border: 2px solid var(--primary-color);
             cursor: pointer;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .admin-tab.active {
@@ -112,7 +124,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">biy</a>
+            <a href="index.html" class="logo">STRTWEAR</a>
             <nav>
                 <a href="admin.html">Dashboard</a>
                 <a href="index.html">View Shop</a>
@@ -376,7 +388,7 @@
                 <a href="index.html">View Shop</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2026 biyclothing Admin</div>
+        <div class="footer-bottom">© 2024 STRTWEAR Admin</div>
     </footer>
 
     <script>
@@ -402,10 +414,23 @@
             document.querySelector(`.admin-tab[onclick="showTab('${tabName}')"]`)?.classList.add('active');
         }
 
-        // Data
-        let shopData = null;
-        let orders = [];
-        let customProducts = JSON.parse(localStorage.getItem('customProducts')) || [];
+        // Firebase Configuration (User needs to fill this)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project.firebaseio.com",
+            projectId: "your-project",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "your-id",
+            appId: "your-app-id"
+        };
+
+        // Initialize Firebase
+        let db = null;
+        if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+        }
 
         async function loadData() {
             try {
@@ -414,9 +439,19 @@
             } catch (e) {
                 shopData = { shopSettings: { stockAvailable: true } };
             }
-            orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-            renderAll();
+            if (db) {
+                // Load orders from Firebase
+                db.ref('orders').on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    orders = data ? Object.values(data) : [];
+                    renderAll();
+                });
+            } else {
+                // Fallback to localStorage
+                orders = JSON.parse(localStorage.getItem('orders')) || [];
+                renderAll();
+            }
         }
 
         function renderAll() {
@@ -517,11 +552,21 @@
         }
 
         function updateOrderStatus(orderNumber, status) {
-            const order = orders.find(o => o.orderNumber === orderNumber);
-            if (order) {
-                order.status = status;
-                localStorage.setItem('orders', JSON.stringify(orders));
-                renderAll();
+            const orderIndex = orders.findIndex(o => o.orderNumber === orderNumber);
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = status;
+
+                if (db) {
+                    // Update in Firebase (we search for the key)
+                    db.ref('orders').orderByChild('orderNumber').equalTo(orderNumber).once('value', (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            childSnapshot.ref.update({ status: status });
+                        });
+                    });
+                } else {
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    renderAll();
+                }
             }
         }
 

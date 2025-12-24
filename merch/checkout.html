@@ -8,12 +8,15 @@
     <meta name="description" content="Complete your order">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">biy</a>
+            <a href="index.html" class="logo">STRTWEAR</a>
             <nav>
                 <a href="tees.html">Tees</a>
                 <a href="hoodies.html">Hoodies</a>
@@ -156,10 +159,11 @@
                 <a href="contact.html">Contact</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2026 biyclothing</div>
+        <div class="footer-bottom">© 2024 STRTWEAR</div>
     </footer>
 
-    <script src="access.js"></script><script src="cart.js"></script>
+    <script src="access.js"></script>
+    <script src="cart.js"></script>
     <script>
         // Initialize EmailJS (you'll need to sign up at emailjs.com for free)
         // Replace these with your actual EmailJS credentials
@@ -195,6 +199,24 @@
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('shipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
             document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Firebase Configuration (Same as in admin.html)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-project.firebaseapp.com",
+            databaseURL: "https://your-project.firebaseio.com",
+            projectId: "your-project",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "your-id",
+            appId: "your-app-id"
+        };
+
+        // Initialize Firebase
+        let db = null;
+        if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
         }
 
         // Generate order number
@@ -235,16 +257,16 @@
                         order_number: orderNumber,
                         order_items: orderItems,
                         total: total.toFixed(2),
-                        shipping_address: `${formData.get('address')}, ${formData.get('city')}, ${formData.get('zip')}, ${formData.get('country')}`
+                        shipping_address: `${formData.get('address')}, ${formData.get('city')}, ${formData.get('zip')}, ${formData.get('country')}`,
+                        admin_email: 'biyclothingstore@gmail.com' // Store owner email
                     });
                 }
             } catch (error) {
                 console.log('Email service not configured, skipping email');
             }
 
-            // Store order in localStorage for admin
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            orders.push({
+            // Store order data
+            const orderData = {
                 orderNumber,
                 date: new Date().toISOString(),
                 customer: {
@@ -263,8 +285,17 @@
                 total,
                 payment: formData.get('payment'),
                 status: 'pending'
-            });
-            localStorage.setItem('orders', JSON.stringify(orders));
+            };
+
+            if (db) {
+                // Save to Firebase
+                await db.ref('orders').push(orderData);
+            } else {
+                // Fallback to localStorage
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                orders.push(orderData);
+                localStorage.setItem('orders', JSON.stringify(orders));
+            }
 
             // Show confirmation
             document.getElementById('confirm-email').textContent = email;
