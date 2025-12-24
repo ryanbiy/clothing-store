@@ -225,7 +225,11 @@
         <a href="contact.html">Contact</a>
         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
       </nav>
-      <div class="hamburger" onclick="toggleSidebar()">☰</div>
+      <div class="mobile-nav-actions" style="display: flex; align-items: center; gap: 16px;">
+        <span class="categories-toggle" onclick="toggleCategories()"
+          style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #00ffff; cursor: pointer; display: none;">Categories</span>
+        <div class="hamburger" onclick="toggleSidebar()">☰</div>
+      </div>
     </div>
 
     <div class="hero-center">
@@ -299,6 +303,21 @@
     </div>
   </div>
 
+  <!-- Categories Pop-up -->
+  <div class="sidebar-overlay" id="category-overlay" onclick="toggleCategories()"></div>
+  <div class="category-popup" id="category-popup">
+    <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.8rem; margin-bottom: 24px; text-align: center;">
+      Categories</h2>
+    <div class="category-grid">
+      <a href="tees.html" class="category-item">Tees</a>
+      <a href="hoodies.html" class="category-item">Outerwear</a>
+      <a href="pants.html" class="category-item">Jeans</a>
+      <a href="footwear.html" class="category-item">Footwear</a>
+      <a href="accessories.html" class="category-item">Accessories</a>
+      <a href="contact.html" class="category-item">Contact</a>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -324,6 +343,11 @@
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('open');
       document.getElementById('sidebar-overlay').classList.toggle('open');
+    }
+
+    function toggleCategories() {
+      document.getElementById('category-popup').classList.toggle('open');
+      document.getElementById('category-overlay').classList.toggle('open');
     }
 
     fetchLocalProducts().then(products => {
