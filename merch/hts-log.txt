@@ -1,0 +1,14 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 24 Dec 2025 13:08:15 at https://shoppu.mochi.at/produkte/merchandising +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://shoppu.mochi.at/produkte/merchandising -O1 "C:\My Web Sites\merch" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+13:19:45	Warning: 	Retry after error -4 (No data (connection closed)) at link https://cdn.shopify.com/s/files/1/0550/2494/3363/products/japanese-farm-food.jpg?v=1651250792 (from https://shoppu.mochi.at/produkte/p/japanese-farm-food-in-englisch)
+13:19:51	Warning: 	Retry after error -4 (Incorrect length (96936 Bytes, 117678 expected)) at link https://cdn.shopify.com/s/files/1/0550/2494/3363/products/Ponzu-Yuzu-SAuce.jpg?v=1636981443 (from https://shoppu.mochi.at/produkte/p/yuzu-ponzu-sauce)
+13:19:59	Warning: 	Retry after error -4 (Incorrect length (15015 Bytes, 109529 expected)) at link https://cdn.shopify.com/s/files/1/0550/2494/3363/products/Rice-Miso.jpg?v=1636981992 (from https://shoppu.mochi.at/produkte/p/miso-blanc)
+
+HTTrack Website Copier/3.49-2 mirror complete in 11 minutes 52 seconds : 421 links scanned, 417 files written (67204947 bytes overall) [32778541 bytes received at 46037 bytes/sec], 41305071 bytes transferred using HTTP compression in 216 files, ratio 15%, 7.7 requests per connection
+(No errors, 3 warnings, 0 messages)

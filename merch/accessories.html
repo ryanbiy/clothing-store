@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessories | STRTWEAR</title>
+    <meta name="description" content="Designer accessories - Glasses, Chains, Belts, Jewelry">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-hero {
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            filter: grayscale(100%);
+        }
+
+        .page-hero h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">STRTWEAR</a>
+            <nav>
+                <a href="tees.html">Tees</a>
+                <a href="hoodies.html">Outerwear</a>
+                <a href="pants.html">Jeans</a>
+                <a href="footwear.html">Footwear</a>
+                <a href="accessories.html">Accessories</a>
+                <a href="contact.html">Contact</a>
+                <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <h1>ACCESSORIES</h1>
+            <p>Glasses • Chains • Belts • Jewelry</p>
+        </section>
+
+        <div class="product-grid" id="product-grid" style="margin-top: 48px;">
+            <p style="text-align: center; padding: 40px;">Loading...</p>
+        </div>
+    </main>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div id="cart-panel">
+        <div class="cart-header">
+            <h2>Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary"
+                style="width:100%; text-align:center; display:block;">Checkout</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <a href="tees.html">Tees</a>
+                <a href="hoodies.html">Outerwear</a>
+                <a href="pants.html">Jeans</a>
+                <a href="footwear.html">Footwear</a>
+                <a href="accessories.html">Accessories</a>
+            </div>
+            <div class="footer-section">
+                <h4>Info</h4>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2024 STRTWEAR</div>
+    </footer>
+
+    <script src="access.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        fetchLocalProducts('accessories').then(products => {
+            renderProducts(products, 'product-grid');
+        });
+    </script>
+</body>
+
+</html>

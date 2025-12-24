@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRTWEAR | Streetwear Shop</title>
+  <meta name="description" content="Premium streetwear - Balenciaga, Phillip Plein, Armani, Balmain">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero-full {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(255, 0, 0, 0.25), rgba(255, 255, 0, 0.2), rgba(0, 255, 0, 0.25), rgba(255, 0, 255, 0.2)),
+        url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: bottom center;
+      background-attachment: fixed;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-full::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 3px),
+        radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+      pointer-events: none;
+      animation: scanlines 0.1s linear infinite;
+    }
+
+    .hero-full::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, #ff00ff, transparent, #00ffff, transparent, #39ff14, transparent);
+      opacity: 0.08;
+      animation: psychedelicSpin 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .hero-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-nav .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.4rem;
+      text-decoration: none;
+      background: linear-gradient(90deg, #ff0033, #ffff00, #39ff14, #00ffff, #ff00ff);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 3s ease infinite;
+    }
+
+    .hero-nav nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-nav nav a {
+      font-family: 'Press Start 2P', monospace;
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.55rem;
+      transition: all 0.3s;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-nav nav a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff;
+    }
+
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 32px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-center h1 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(2.5rem, 10vw, 6rem);
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #ff0033, #ffff00, #39ff14, #00ffff, #ff00ff);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 3s ease infinite;
+    }
+
+    .hero-center p {
+      font-size: 1rem;
+      opacity: 0.9;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-bottom: 48px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .hero-category {
+      padding: 32px 24px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .hero-category:hover {
+      background: rgba(255, 0, 255, 0.3);
+      border-color: #ff00ff;
+      transform: translateY(-8px);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+    }
+
+    .hero-category h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-category p {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      letter-spacing: 1px;
+      margin-bottom: 0;
+    }
+
+    @keyframes gradientMove {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes scanlines {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 0 3px;
+      }
+    }
+
+    @keyframes psychedelicSpin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .featured-section {
+      background: #0a0a0a;
+      padding: 64px 32px;
+    }
+
+    .featured-section .section-header {
+      margin-bottom: 48px;
+    }
+
+    .featured-section .product-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Full Hero Section with Nav and Categories -->
+  <section class="hero-full">
+    <div class="hero-nav">
+      <a href="index.html" class="logo">STRTWEAR</a>
+      <nav>
+        <a href="tees.html">Tees</a>
+        <a href="hoodies.html">Outerwear</a>
+        <a href="pants.html">Jeans</a>
+        <a href="footwear.html">Footwear</a>
+        <a href="accessories.html">Accessories</a>
+        <a href="contact.html">Contact</a>
+        <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
+      </nav>
+    </div>
+
+    <div class="hero-center">
+      <h1>STRTWEAR</h1>
+      <p>Underground streetwear for the bold</p>
+
+      <div class="hero-categories">
+        <a href="tees.html" class="hero-category">
+          <h3>Tees</h3>
+          <p>Phillip Plein • Balmain</p>
+        </a>
+        <a href="hoodies.html" class="hero-category">
+          <h3>Outerwear</h3>
+          <p>D&G • Armani</p>
+        </a>
+        <a href="pants.html" class="hero-category">
+          <h3>Jeans</h3>
+          <p>Affliction • Armani</p>
+        </a>
+        <a href="footwear.html" class="hero-category">
+          <h3>Footwear</h3>
+          <p>Balenciaga • Givenchy</p>
+        </a>
+        <a href="accessories.html" class="hero-category">
+          <h3>Accessories</h3>
+          <p>Chains • Glasses</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>New Arrivals</h2>
+      <p>Latest drops</p>
+    </div>
+    <div class="product-grid" id="featured-grid">
+      <p style="text-align: center; padding: 40px; opacity: 0.5;">Loading...</p>
+    </div>
+  </section>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <div id="cart-panel">
+    <div class="cart-header">
+      <h2>Cart</h2>
+      <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <a href="checkout.html" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Checkout</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <a href="tees.html">Tees</a>
+        <a href="hoodies.html">Outerwear</a>
+        <a href="pants.html">Jeans</a>
+        <a href="footwear.html">Footwear</a>
+        <a href="accessories.html">Accessories</a>
+      </div>
+      <div class="footer-section">
+        <h4>Info</h4>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 STRTWEAR</div>
+  </footer>
+
+  <script src="access.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    fetchLocalProducts().then(products => {
+      renderProducts(products.slice(0, 4), 'featured-grid');
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | STRTWEAR</title>
+    <meta name="description" content="Business owner login">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">STRTWEAR</a>
+            <nav>
+                <a href="tees.html">Tees</a>
+                <a href="hoodies.html">Hoodies</a>
+                <a href="pants.html">Pants</a>
+                <a href="footwear.html">Footwear</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-header" style="text-align: center;">
+            <h1>Admin Login</h1>
+            <p>Business owner access</p>
+        </section>
+
+        <div class="login-container">
+            <form id="login-form" class="login-form pixel-border">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <p id="error-message" class="error-message"></p>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Login
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <a href="tees.html">Tees</a>
+                <a href="hoodies.html">Hoodies</a>
+                <a href="pants.html">Pants</a>
+                <a href="footwear.html">Footwear</a>
+            </div>
+            <div class="footer-section">
+                <h4>Info</h4>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2024 STRTWEAR</div>
+    </footer>
+
+    <script>
+        // Default admin credentials (in production, use a proper backend!)
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'strtwear2024';
+
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('error-message');
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                // Set admin session
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminLoginTime', Date.now().toString());
+
+                // Redirect to admin dashboard
+                window.location.href = 'admin.html';
+            } else {
+                errorEl.textContent = 'Invalid username or password';
+            }
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            window.location.href = 'admin.html';
+        }
+    </script>
+</body>
+
+</html>
