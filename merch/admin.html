@@ -119,6 +119,56 @@
             font-size: 0.8rem;
             margin-bottom: 16px;
         }
+
+        /* Analytics UI Improvements */
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            padding: 20px;
+        }
+
+        .stat-value {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem !important;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.6rem !important;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.7;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .retro-font {
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        .top-product-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qty-badge {
+            background: var(--neon-cyan);
+            color: #000;
+            padding: 4px 8px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
     </style>
 </head>
 
@@ -182,20 +232,28 @@
         <div id="tab-overview" class="tab-content active">
             <div class="admin-stats">
                 <div class="stat-card pixel-border">
-                    <h3 id="total-orders">0</h3>
-                    <p>Total Orders</p>
+                    <i class="fas fa-shopping-cart"
+                        style="font-size: 1.2rem; color: var(--neon-cyan); margin-bottom: 12px;"></i>
+                    <h3 id="total-orders" class="stat-value">0</h3>
+                    <p class="stat-label">Total Orders</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="pending-orders">0</h3>
-                    <p>Pending</p>
+                    <i class="fas fa-clock"
+                        style="font-size: 1.2rem; color: var(--neon-orange); margin-bottom: 12px;"></i>
+                    <h3 id="pending-orders" class="stat-value">0</h3>
+                    <p class="stat-label">Pending</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="total-revenue">$0</h3>
-                    <p>Revenue</p>
+                    <i class="fas fa-dollar-sign"
+                        style="font-size: 1.2rem; color: var(--neon-green); margin-bottom: 12px;"></i>
+                    <h3 id="total-revenue" class="stat-value">$0</h3>
+                    <p class="stat-label">Revenue</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="total-customers">0</h3>
-                    <p>Customers</p>
+                    <i class="fas fa-users"
+                        style="font-size: 1.2rem; color: var(--neon-purple); margin-bottom: 12px;"></i>
+                    <h3 id="total-customers" class="stat-value">0</h3>
+                    <p class="stat-label">Customers</p>
                 </div>
             </div>
 
@@ -284,7 +342,6 @@
                         <tr>
                             <th>Image</th>
                             <th>Product</th>
-                            <th>Brand</th>
                             <th>Category</th>
                             <th>Price</th>
                             <th>Stock</th>
@@ -322,34 +379,46 @@
 
             <div class="admin-stats">
                 <div class="stat-card pixel-border">
-                    <h3 id="today-orders">0</h3>
-                    <p>Today's Orders</p>
+                    <i class="fas fa-calendar-day"
+                        style="font-size: 1.2rem; color: var(--neon-cyan); margin-bottom: 12px;"></i>
+                    <h3 id="today-orders" class="stat-value">0</h3>
+                    <p class="stat-label">Today's Orders</p>
                 </div>
                 <div class="stat-card pixel-border">
                     <i class="fas fa-wallet"
-                        style="font-size: 1.5rem; color: var(--neon-cyan); margin-bottom: 12px;"></i>
-                    <h3>Total Revenue</h3>
-                    <p id="total-revenue">$0.00</p>
+                        style="font-size: 1.2rem; color: var(--neon-green); margin-bottom: 12px;"></i>
+                    <h3 id="today-revenue" class="stat-value">$0.00</h3>
+                    <p class="stat-label">Today's Revenue</p>
+                </div>
+                <div class="stat-card pixel-border">
+                    <i class="fas fa-cash-register"
+                        style="font-size: 1.2rem; color: var(--neon-cyan); margin-bottom: 12px;"></i>
+                    <h3 id="total-revenue-analytics" class="stat-value">$0.00</h3>
+                    <p class="stat-label">Total Revenue</p>
                 </div>
                 <div class="stat-card pixel-border">
                     <i class="fas fa-shopping-bag"
-                        style="font-size: 1.5rem; color: var(--neon-pink); margin-bottom: 12px;"></i>
-                    <h3>Total Orders</h3>
-                    <p id="total-orders">0</p>
+                        style="font-size: 1.2rem; color: var(--neon-pink); margin-bottom: 12px;"></i>
+                    <h3 id="total-orders-analytics" class="stat-value">0</h3>
+                    <p class="stat-label">Total Orders</p>
                 </div>
                 <div class="stat-card pixel-border">
                     <i class="fas fa-clock"
-                        style="font-size: 1.5rem; color: var(--neon-orange); margin-bottom: 12px;"></i>
-                    <h3>Pending</h3>
-                    <p id="pending-orders">0</p>
+                        style="font-size: 1.2rem; color: var(--neon-orange); margin-bottom: 12px;"></i>
+                    <h3 id="pending-orders-analytics" class="stat-value">0</h3>
+                    <p class="stat-label">Pending</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="avg-order">$0</h3>
-                    <p>Avg Order Value</p>
+                    <i class="fas fa-chart-line"
+                        style="font-size: 1.2rem; color: var(--neon-green); margin-bottom: 12px;"></i>
+                    <h3 id="avg-order" class="stat-value">$0</h3>
+                    <p class="stat-label">Avg Order Value</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="conversion-rate">0%</h3>
-                    <p>Fulfillment Rate</p>
+                    <i class="fas fa-check-circle"
+                        style="font-size: 1.2rem; color: var(--neon-purple); margin-bottom: 12px;"></i>
+                    <h3 id="conversion-rate" class="stat-value">0%</h3>
+                    <p class="stat-label">Fulfillment Rate</p>
                 </div>
             </div>
 
@@ -496,6 +565,10 @@
 
         // Initialize Firebase
         let db = null;
+        let shopData = {};
+        let orders = [];
+        let customProducts = JSON.parse(localStorage.getItem('customProducts')) || [];
+
         if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
             firebase.initializeApp(firebaseConfig);
             db = firebase.database();
@@ -543,6 +616,13 @@
             document.getElementById('pending-orders').textContent = pending;
             document.getElementById('total-revenue').textContent = '$' + revenue.toFixed(0);
             document.getElementById('total-customers').textContent = customers;
+
+            // Sync with analytics tab if visible
+            const analyticsTotal = document.getElementById('total-orders-analytics');
+            const analyticsPending = document.getElementById('pending-orders-analytics');
+            if (analyticsTotal) analyticsTotal.textContent = orders.length;
+            if (analyticsPending) analyticsPending.textContent = pending;
+
             document.getElementById('quick-orders').textContent = pending + ' pending';
 
             // Product count
@@ -677,7 +757,6 @@
         <tr>
           <td><img src="${p.image}" style="width:50px;height:50px;object-fit:cover;" onerror="this.src='https://placehold.co/50x50/eee/999?text=?'"></td>
           <td>${p.name}</td>
-          <td>${p.brand}</td>
           <td>${p.category}</td>
           <td>$${p.price.toFixed(2)}</td>
           <td><strong style="color: ${p.stock <= 2 ? '#f44336' : '#000'}">${p.stock || 0}</strong></td>
@@ -780,19 +859,39 @@
             const fulfillmentRate = orders.length > 0 ? (delivered / orders.length * 100) : 0;
 
             document.getElementById('today-orders').textContent = todayOrders.length;
-            document.getElementById('today-revenue').textContent = '$' + todayRevenue.toFixed(0);
-            document.getElementById('avg-order').textContent = '$' + avgOrder.toFixed(0);
+            document.getElementById('today-revenue').textContent = '$' + todayRevenue.toFixed(2);
+            const totalRevenueAn = document.getElementById('total-revenue-analytics');
+            if (totalRevenueAn) totalRevenueAn.textContent = '$' + orders.reduce((sum, o) => sum + o.total, 0).toFixed(2);
+            document.getElementById('avg-order').textContent = '$' + avgOrder.toFixed(2);
             document.getElementById('conversion-rate').textContent = fulfillmentRate.toFixed(0) + '%';
+
+            // Update redundant analytics cards
+            const totalOrdersEl = document.getElementById('total-orders-analytics');
+            const pendingOrdersEl = document.getElementById('pending-orders-analytics');
+            if (totalOrdersEl) totalOrdersEl.textContent = orders.length;
+            if (pendingOrdersEl) pendingOrdersEl.textContent = orders.filter(o => o.status === 'pending').length;
 
             // Status breakdown
             const statusCounts = { pending: 0, processing: 0, shipped: 0, delivered: 0 };
             orders.forEach(o => statusCounts[o.status] = (statusCounts[o.status] || 0) + 1);
             document.getElementById('status-breakdown').innerHTML = `
-        <div style="display:flex;gap:24px;flex-wrap:wrap;">
-          <div><span class="status-badge status-pending">Pending</span> ${statusCounts.pending}</div>
-          <div><span class="status-badge status-processing">Processing</span> ${statusCounts.processing}</div>
-          <div><span class="status-badge status-shipped">Shipped</span> ${statusCounts.shipped}</div>
-          <div><span class="status-badge status-delivered">Delivered</span> ${statusCounts.delivered}</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
+          <div class="status-badge status-pending" style="padding:12px; text-align:center;">
+            <div style="font-size:0.5rem; margin-bottom:4px;">PENDING</div>
+            <div style="font-size:1.1rem;">${statusCounts.pending}</div>
+          </div>
+          <div class="status-badge status-processing" style="padding:12px; text-align:center;">
+            <div style="font-size:0.5rem; margin-bottom:4px;">PROCESSING</div>
+            <div style="font-size:1.1rem;">${statusCounts.processing}</div>
+          </div>
+          <div class="status-badge status-shipped" style="padding:12px; text-align:center;">
+            <div style="font-size:0.5rem; margin-bottom:4px;">SHIPPED</div>
+            <div style="font-size:1.1rem;">${statusCounts.shipped}</div>
+          </div>
+          <div class="status-badge status-delivered" style="padding:12px; text-align:center;">
+            <div style="font-size:0.5rem; margin-bottom:4px;">DELIVERED</div>
+            <div style="font-size:1.1rem;">${statusCounts.delivered}</div>
+          </div>
         </div>
       `;
 
@@ -809,8 +908,13 @@
                 .slice(0, 5);
 
             document.getElementById('top-products').innerHTML = topProducts.length > 0
-                ? topProducts.map(([name, count]) => `<div style="padding:8px 0;border-bottom:1px solid #eee;">${name} <strong>(${count} sold)</strong></div>`).join('')
-                : '<p style="opacity:0.7;">No sales data yet</p>';
+                ? topProducts.map(([name, count]) => `
+                    <div class="top-product-item">
+                        <span style="font-size:0.85rem;">${name}</span>
+                        <span class="qty-badge">${count} SOLD</span>
+                    </div>
+                `).join('')
+                : '<p style="opacity:0.7; padding:20px; text-align:center;">No sales data yet</p>';
         }
 
         function updateShopStatusDisplay() {

@@ -83,7 +83,7 @@ function renderCart() {
       <img src="${item.image}" alt="${item.name}" class="cart-item-image">
       <div class="cart-item-info">
         <h4>${item.name}</h4>
-        <p>${item.brand} | Size: ${item.size}</p>
+        <p>Size: ${item.size}</p>
         <p class="cart-item-price">$${item.price.toFixed(2)}</p>
       </div>
       <div class="cart-item-quantity">
@@ -123,7 +123,6 @@ function renderProducts(products, gridId) {
       </div>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
-        <p class="product-brand">${product.brand}</p>
         <p class="product-price">$${product.price.toFixed(2)}</p>
         <div class="product-options">
           <select class="size-select" id="size-${product.id}">
