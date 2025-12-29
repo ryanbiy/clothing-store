@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-shoppu.mochi.at	TRUE	/	FALSE	1999999999	i18n_redirected	de
-shoppu.mochi.at	TRUE	/	FALSE	1999999999	SameSite	Lax
-
