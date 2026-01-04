@@ -4,37 +4,37 @@ const products = [
         id: 1,
         name: "unrendered2004 face tee",
         price: "$30.00",
-        img: "https://static.wixstatic.com/media/c4e071_f88d1bb1260047d3a7f789e1d1609358~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_f88d1bb1260047d3a7f789e1d1609358~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     },
     {
         id: 2,
         name: "unrendered2004 skull tee",
         price: "$30.00",
-        img: "https://static.wixstatic.com/media/c4e071_3ffe40d6c8fb4af2b875fa8312e7a7cc~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_3ffe40d6c8fb4af2b875fa8312e7a7cc~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     },
     {
         id: 3,
         name: "unrendered2004 limited tee",
         price: "$35.00",
-        img: "https://static.wixstatic.com/media/c4e071_edb6858f66af43dcad7c7863f0d506fa~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_edb6858f66af43dcad7c7863f0d506fa~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     },
     {
         id: 4,
         name: "unrendered2004 drop tee",
         price: "$30.00",
-        img: "https://static.wixstatic.com/media/c4e071_86f7108026fe416e8bd793b1ce63dc1b~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_86f7108026fe416e8bd793b1ce63dc1b~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     },
     {
         id: 5,
         name: "2002 face crew neck",
         price: "$50.00",
-        img: "https://static.wixstatic.com/media/c4e071_3046e403eaa842f59909e56b93224ee6~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_3046e403eaa842f59909e56b93224ee6~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     },
     {
         id: 6,
         name: "2002 Gas Mask Tee",
         price: "$30.00",
-        img: "https://static.wixstatic.com/media/c4e071_b0fc628298b548e0a9fd492ece7cb3cf~mv2.png"
+        img: "https://static.wixstatic.com/media/c4e071_b0fc628298b548e0a9fd492ece7cb3cf~mv2.png/v1/fill/w_800,h_1000,al_c,q_80/file.webp"
     }
 ];
 
